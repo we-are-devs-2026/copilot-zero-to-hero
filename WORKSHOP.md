@@ -119,7 +119,7 @@ We start from a template repo containing only the congress data — no code yet.
 ### Step 2 · Clone and open
 
 ```bash
-git clone https://github.com/we-are-devs-2026-<your-username>/wad-copilot-workshop.git
+git clone https://github.com/we-are-devs-2026/<your-username>-wad-copilot-workshop.git
 cd wad-copilot-workshop
 code .
 ```
