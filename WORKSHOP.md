@@ -316,3 +316,24 @@ By default, Copilot asks before running tools that can modify files or execute c
 - Use `/sandbox enable` to run the session with additional isolation and restrict access to your filesystem, network, and system capabilities.
 
 > ⚠️ Only use `--allow-all`, `--yolo`, or `/allow-all` in a project you trust. These options reduce confirmation prompts, but also give Copilot more freedom to read, edit, and run commands.
+
+
+
+## Review your changes locally
+
+A good pattern is to review your changes in your local environment before opening a PR. This is also useful when your source code is not hosted on GitHub, which is possible with Copilot CLI.
+
+The CLI includes 2 specific commands for this:
+
+- `/review` to run a code review agent on your local changes.
+- `/security-review` to run a security-focused review on your local changes.
+
+You can run them one by one, or use subagents with `/fleet` to run multiple reviews in parallel, even with different models:
+
+```text
+/fleet Can you do a code review with GPT-5.3-Codex, and a security-review with Claude Sonnet 4.6 on my changes
+```
+
+In the image below you can see the 2 agents running with 2 different models:
+
+![](./images/005-cli-code-review.png)
