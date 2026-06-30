@@ -37,7 +37,7 @@ You'll build **two apps** from the same dataset — a static site by *just askin
 
 # ✅ Prerequisites & installation
 
-Set up **VS Code**, **GitHub Copilot**, and **Git** for the hands-on parts. Also install the Copilot **CLI** and **app** — we'll explore them in the final section.
+Set up **VS Code**, **GitHub CLI**, **GitHub Copilot**, and **Git** for the hands-on parts. Also install the Copilot **CLI** and **app** — we'll explore them in the final section.
 
 > Don't have a GitHub Copilot subscription? A 30-day free trial is available at <https://github.com/features/copilot>.
 
@@ -53,7 +53,36 @@ Verify: `code --version`
 </details>
 
 <details>
-<summary><b>2. Install Git</b></summary>
+<summary><b>2. Install GitHub CLI</b></summary>
+
+GitHub CLI (`gh`) brings pull requests, issues, GitHub Actions, and other GitHub features to your terminal. It is interesting for this workshop because Copilot can use it to interact with GitHub directly, for example to work with PRs, issues, and repository information without leaving the command line.
+
+- **macOS:** `brew install gh`
+- **Windows:** `winget install --id GitHub.cli`
+- **Linux (Debian/Ubuntu):**
+
+```bash
+sudo apt update
+sudo apt install gh
+```
+
+Authenticate with GitHub:
+
+```bash
+gh auth login
+```
+
+Verify you are authenticated:
+
+```bash
+gh auth status
+```
+
+Docs: <https://docs.github.com/en/github-cli>
+</details>
+
+<details>
+<summary><b>3. Install Git</b></summary>
 
 - **macOS:** `brew install git` (or `xcode-select --install`)
 - **Windows:** `winget install Git.Git`
@@ -63,7 +92,7 @@ Verify: `git --version`
 </details>
 
 <details>
-<summary><b>3. Enable GitHub Copilot in VS Code</b></summary>
+<summary><b>4. Enable GitHub Copilot in VS Code</b></summary>
 
 1. Open VS Code → **Extensions** (`Ctrl/Cmd + Shift + X`).
 2. Install **GitHub Copilot** and **GitHub Copilot Chat**.
@@ -72,7 +101,7 @@ Verify: `git --version`
 </details>
 
 <details>
-<summary><b>4. Install the GitHub Copilot CLI</b></summary>
+<summary><b>5. Install the GitHub Copilot CLI</b></summary>
 
 The CLI brings the agent to your terminal. **Requires Node.js ≥ 22 and npm ≥ 10.**
 
@@ -94,12 +123,12 @@ Docs: <https://docs.github.com/copilot/how-tos/copilot-cli/set-up-copilot-cli/in
 </details>
 
 <details>
-<summary><b>5. Install the GitHub Copilot app</b></summary>
+<summary><b>6. Install the GitHub Copilot app</b></summary>
 
 The desktop Copilot app runs the same agent outside the editor, with sessions and plan mode. We'll demo it at the end.
 
 - **macOS / Windows:** download from <https://github.com/features/copilot> → **Download**, install, and sign in with your GitHub account.
-- **Linux:** not yet available — use the **CLI** (step 4) instead.
+- **Linux:** not yet available — use the **CLI** (step 5) instead.
 
 Needs an active Copilot subscription (the same one used for VS Code).
 </details>
@@ -354,3 +383,48 @@ You can also configure **GitHub Copilot code review** to automatically review pu
 
 This configuration will only be used for the newly created PRs, and will not review existing PRs. For this PR, you have to manually ask GitHub Copilot to do the review on the PR directly. Remember that you can navigate to the PR directly from the CLI either using the `tab` or using the `/pr view web` command.
 
+## Merge the pull request
+
+You can merge using the GitHub Web UI, or using the CLI. The CLI will also help you to merge the PR with the correct merge strategy, and will also help you to delete the branch after the merge.
+
+Once the PR has been reviewed and approved, merge it so the new application changes are back on `main` before adding more features:
+
+```text
+/pr automerge
+```
+
+After the PR is merged, update your local repository:
+
+```bash
+git checkout main
+git pull
+```
+
+You are now ready to create a new branch and continue adding features to the application.
+
+---
+
+# 🧩 Part 7 — Specialize GitHub Copilot with Skills
+
+GitHub Copilot can be customized for the way you work. Beyond prompts, you can use custom instructions, agents, MCP servers, and **Skills** to give Copilot extra behaviors and workflows. For a good overview, see [What are agents, skills, and instructions?](https://awesome-copilot.github.com/learning-hub/what-are-agents-skills-instructions/).
+
+Skills are reusable capabilities that Copilot can load when a task needs them. They are useful when you want Copilot to follow a specific process, use a repeatable workflow, or behave like a specialized teammate.
+
+## Example: install the `grill-me` skill
+
+A useful example is the `grill-me` skill, which stress-tests a plan or design by asking detailed questions until the idea is clear and the risks are understood:
+
+<https://www.skills.sh/mattpocock/skills/grill-me>
+
+Install it with GitHub CLI:
+
+```bash
+gh skill install mattpocock/skills grill-me
+```
+
+There are many options when installing skills, depending on whether you want them available for your user account, a project, or another supported scope.
+
+Once installed, you can see and manage skills:
+
+- In Copilot CLI, use the `/skills` command.
+- In VS Code, open the Command Palette and run **Open Customization**.
