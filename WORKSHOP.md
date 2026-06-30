@@ -337,3 +337,20 @@ You can run them one by one, or use subagents with `/fleet` to run multiple revi
 In the image below you can see the 2 agents running with 2 different models:
 
 ![](./images/005-cli-code-review.png)
+
+## Create a pull request from the CLI
+
+Once your changes are reviewed, committed, and pushed to GitHub, you can create the pull request directly from Copilot CLI:
+
+```text
+/pr create
+```
+
+Copilot will help you create the PR from the current branch, including the title and description. This keeps the workflow in the terminal: build, review, commit, push, and open the PR without switching tools.
+
+## Configure automatic code review on GitHub
+
+You can also configure **GitHub Copilot code review** to automatically review pull requests on GitHub. This can be enabled for your own PRs, for a single repository using a branch ruleset, or at the organization level. In a repository ruleset, enable **Automatically request Copilot code review**, and optionally enable review of new pushes or draft PRs. See the documentation: <https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-automatic-review>.
+
+This configuration will only be used for the newly created PRs, and will not review existing PRs. For this PR, you have to manually ask GitHub Copilot to do the review on the PR directly. Remember that you can navigate to the PR directly from the CLI either using the `tab` or using the `/pr view web` command.
+
