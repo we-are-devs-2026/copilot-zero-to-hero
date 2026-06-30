@@ -290,3 +290,29 @@ Then ask GitHub Copilot to work on 2 tasks in parallel in the same session using
 
 You can follow the tasks using the `/tasks` command.
 
+You can look at your consumption and context using the commands: `/usage` & `/context`, and simply use `/help` to see all the commands available.
+
+## Managing CLI sessions
+
+When you change topic, it is important to start with a clear context so Copilot has a clear understanding of the ask.
+
+With the CLI, you have several options:
+
+- Start a new terminal and run `copilot` again.
+- Clear the current session with `/clear`.
+- Start or switch sessions with `/session`.
+- If you exit Copilot and want to return to an old session, run:
+
+```bash
+copilot --resume
+```
+
+## Permissions and sandbox
+
+By default, Copilot asks before running tools that can modify files or execute commands. For a trusted workshop project, you can choose to allow more autonomy:
+
+- Use `/allow-all` inside a session to enable all permissions for tools, paths, and URLs.
+- Start Copilot with `copilot --allow-all` or `copilot --yolo` to enable all permissions from the beginning.
+- Use `/sandbox enable` to run the session with additional isolation and restrict access to your filesystem, network, and system capabilities.
+
+> ⚠️ Only use `--allow-all`, `--yolo`, or `/allow-all` in a project you trust. These options reduce confirmation prompts, but also give Copilot more freedom to read, edit, and run commands.
