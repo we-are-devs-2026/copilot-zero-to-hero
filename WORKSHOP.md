@@ -269,4 +269,24 @@ Something like :
 
 You can add the `data` folder to the context of the session, and GitHub Copilot will be able to read the data and generate an ERD diagram based on it.
 
+---
+
+# 🟣 Part 6 — Working with GitHub Copilot CLI
+
+Once you have installed the CLI, open a terminal in VS Code or on your system, and make sure you are in the root of your project.
+
+You can now interact with GitHub Copilot directly from your terminal:
+
+- Press `Tab` to switch between **Session**, **Issues**, **PR**, and **Gists**.
+- In **Session**, you can enter specific commands using `/`, for example `/model`.
+
+Select the model and choose **Auto**.
+
+Then ask GitHub Copilot to work on 2 tasks in parallel in the same session using background agents with the `/fleet` command:
+
+```text
+/fleet Can you add support for multiple themes light, dark, and 3 other one, and add a search form in the speaker form to search by name and company
+```
+
+You can follow the tasks using the `/tasks` command.
 
