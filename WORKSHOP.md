@@ -428,3 +428,67 @@ Once installed, you can see and manage skills:
 
 - In Copilot CLI, use the `/skills` command.
 - In VS Code, open the Command Palette and run **Open Customization**.
+
+## Use `grill-me` automatically in Plan mode
+
+To make this useful for the rest of the workshop, ask Copilot to update the `AGENTS.md` file at the root of the repository so that it always uses the `grill-me` skill when working in Plan mode.
+
+For example, add an instruction like:
+
+```markdown
+When working in Plan mode, always use the `grill-me` skill to challenge the plan, ask clarifying questions, and identify risks before implementation starts.
+```
+
+You could also put this instruction in `.github/copilot-instructions.md` instead. GitHub Copilot supports multiple customization files, so you can choose the scope that best fits your project.
+
+Let's now use it to add some features to our Next.js app.
+
+---
+
+# 🌍 Part 8 — Add i18n with Plan → Issue → Cloud Agent
+
+Now let's add internationalization support to the application, but instead of asking Copilot to code immediately, we will use a more structured workflow in 3 phases.
+
+## Phase 1 · Create a plan with many questions
+
+Start by asking Copilot to create a detailed plan for adding i18n support. The goal is not to implement yet, but to force a good specification first.
+
+Switch to GPT-5.5 model in Plan mode, and ask Copilot to create a plan for adding i18n support to the Next.js application. Something like 
+
+```text
+/plan I want to add i18n support to this Next.js application.
+
+Create a detailed plan and ask many questions about the expected behavior, supported languages, routing strategy, translation files, fallback behavior, date/time formatting, accessibility, and testing.
+
+Do not write code yet.
+```
+
+Since we have the `grill-me` skill installed, Copilot will ask many questions about the expected behavior, supported languages, routing strategy, translation files, fallback behavior, date/time formatting, accessibility, and testing.
+
+Review the plan, answer the questions, and refine the scope until the specification is clear.
+
+## Phase 2 · Create a GitHub issue from the plan
+
+Once the plan is clear, create a GitHub issue from it. This shows how Copilot can help manage project work, specifications, and implementation tasks directly from the terminal.
+
+You can ask Copilot CLI:
+
+```text
+Create a GitHub issue from this i18n plan. Include the context, requirements, acceptance criteria, implementation steps, and testing notes.
+```
+
+Or use GitHub CLI directly:
+
+```bash
+gh issue create
+```
+
+The issue becomes the source of truth for the feature.
+
+## Phase 3 · Delegate the issue to GitHub Copilot Cloud Agent
+
+Then use **GitHub Copilot Cloud Agent** to work on the issue automatically in the cloud. The agent can read the issue, create a branch, implement the feature, and open a pull request.
+
+From the issue page on GitHub, assign or delegate the work to Copilot. This is useful when you want to move implementation out of your local machine while keeping the work tracked through GitHub issues and pull requests.
+
+At the end of this phase, review the PR created by Copilot Cloud Agent, run the application locally, and merge it when the i18n support is correct.
