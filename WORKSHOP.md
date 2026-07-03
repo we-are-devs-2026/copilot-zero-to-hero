@@ -378,6 +378,8 @@ Once your changes are reviewed, committed, and pushed to GitHub, you can create 
 
 Copilot will help you create the PR from the current branch, including the title and description. This keeps the workflow in the terminal: build, review, commit, push, and open the PR without switching tools.
 
+Take a moment to also explore the `/pr` command: it groups the pull request actions available from Copilot CLI, including viewing, creating, reviewing, and merging PRs from the terminal.
+
 ## Configure automatic code review on GitHub
 
 You can also configure **GitHub Copilot code review** to automatically review pull requests on GitHub. This can be enabled for your own PRs, for a single repository using a branch ruleset, or at the organization level. In a repository ruleset, enable **Automatically request Copilot code review**, and optionally enable review of new pushes or draft PRs. See the documentation: <https://docs.github.com/en/copilot/how-tos/copilot-on-github/set-up-copilot/configure-automatic-review>.
@@ -517,4 +519,6 @@ You can continue to interact with the agent directly in the PR by asking `@copil
 
 Before merging, ask GitHub Copilot to review the Pull Request. On GitHub.com, open the PR and under **Reviewers**, next to **Copilot**, click **Request**. Copilot will add review comments and, when possible, suggested changes you can apply. It is also possible to ask for a review from IDEs, Copilot CLI, and the GitHub Copilot app. See the documentation: [Using GitHub Copilot code review](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review?tool=webui).
 
-When the PR is ready, reviewed, and all checks are passing, merge the Pull Request so the i18n feature becomes part of `main`.
+
+
+When the PR is ready, reviewed, and all checks are passing, **merge the Pull Request** so the i18n feature becomes part of `main`.
