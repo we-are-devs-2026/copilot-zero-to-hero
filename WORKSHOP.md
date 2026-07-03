@@ -514,3 +514,7 @@ You can continue to interact with the agent directly in the PR by asking `@copil
 ```text
 @copilot can you update the readme with the new i18n support and add a screenshot of the home page in English, French, and German
 ```
+
+Before merging, ask GitHub Copilot to review the Pull Request. On GitHub.com, open the PR and under **Reviewers**, next to **Copilot**, click **Request**. Copilot will add review comments and, when possible, suggested changes you can apply. It is also possible to ask for a review from IDEs, Copilot CLI, and the GitHub Copilot app. See the documentation: [Using GitHub Copilot code review](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/request-a-code-review/use-code-review?tool=webui).
+
+When the PR is ready, reviewed, and all checks are passing, merge the Pull Request so the i18n feature becomes part of `main`.
