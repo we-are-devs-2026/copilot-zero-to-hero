@@ -98,6 +98,7 @@ Verify: `git --version`
 2. Install **GitHub Copilot** and **GitHub Copilot Chat**.
 3. Click **Sign in** and authorize your GitHub account.
 4. Open Chat (`Ctrl/Cmd + Alt + I`) and confirm you can pick **Agent** mode with the **Auto** model.
+
 </details>
 
 <details>
@@ -458,37 +459,55 @@ Switch to GPT-5.5 model in Plan mode, and ask Copilot to create a plan for addin
 ```text
 /plan I want to add i18n support to this Next.js application.
 
-Create a detailed plan and ask many questions about the expected behavior, supported languages, routing strategy, translation files, fallback behavior, date/time formatting, accessibility, and testing.
+Create a detail requirement document based on questions (grill-me), this plan/requirements will be saved as GitHub issue in the project. Make sure you first list the requirements in the issue then a set of user stories, and succes criteria with clear testing pyramid (30% UT, 40% integration, 30% E2E)
 
-Do not write code yet.
+Do not implement anything just prepare and create an issue
 ```
 
 Since we have the `grill-me` skill installed, Copilot will ask many questions about the expected behavior, supported languages, routing strategy, translation files, fallback behavior, date/time formatting, accessibility, and testing.
 
-Review the plan, answer the questions, and refine the scope until the specification is clear.
-
-## Phase 2 · Create a GitHub issue from the plan
-
-Once the plan is clear, create a GitHub issue from it. This shows how Copilot can help manage project work, specifications, and implementation tasks directly from the terminal.
-
-You can ask Copilot CLI:
+When done, Copilot CLI should have created the issue, you should see a message like :
 
 ```text
-Create a GitHub issue from this i18n plan. Include the context, requirements, acceptance criteria, implementation steps, and testing notes.
+The GitHub issue has been created: https://github.com/we-are-devs-2026/<your-name>-workshop/issues/XXX
+```
+If not you can explicitly ask Copilot to create the issue with a prompt like:
+
+```text
+Can you create another issue from this plan.
 ```
 
-Or use GitHub CLI directly:
 
-```bash
-gh issue create
+
+## Phase 2 · Delegate the issue to GitHub Copilot Cloud Agent
+
+The GitHub issue can now be used as the prompt to ask GitHub Copilot to work on the task in the cloud. The agent can read the issue, create a branch, implement the feature, and open a pull request.
+
+You can use the `/delegate` command in the CLI, or other Copilot clients, to ask Copilot to work on the issue:
+
+```text
+/delegate Work on issue #XXX
 ```
 
-The issue becomes the source of truth for the feature.
+But in this workshop, we will do it directly from the GitHub issue.
 
-## Phase 3 · Delegate the issue to GitHub Copilot Cloud Agent
+Using `Tab` in the CLI, go to the issue and open it in your browser. From the issue page, click **Assign to Agent**. You can select the agent, the model, and add more information to the prompt.
 
-Then use **GitHub Copilot Cloud Agent** to work on the issue automatically in the cloud. The agent can read the issue, create a branch, implement the feature, and open a pull request.
+For example, add:
 
-From the issue page on GitHub, assign or delegate the work to Copilot. This is useful when you want to move implementation out of your local machine while keeping the work tracked through GitHub issues and pull requests.
+```text
+When implemented, add some screenshots of the home page in English, French, and German in the PR.
+```
+
+This is useful when you want to move implementation out of your local machine while keeping the work tracked through GitHub issues and pull requests.
+
+You can follow the work done by the agents in the PR using
+- the View Session button in the PR
+- the https://github.com/copilot/agents URL
+- `copilot --resume` in the terminal
+- The Sessions list in VSCode
+
+Also GitHub Copilot is updating the Draft PR with the progress of the work, so you can see the changes in real time.
+
 
 At the end of this phase, review the PR created by Copilot Cloud Agent, run the application locally, and merge it when the i18n support is correct.
