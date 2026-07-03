@@ -509,5 +509,8 @@ You can follow the work done by the agents in the PR using
 
 Also GitHub Copilot is updating the Draft PR with the progress of the work, so you can see the changes in real time.
 
+You can continue to interact with the agent directly in the PR by asking `@copilot` for changes or information. For example:
 
-At the end of this phase, review the PR created by Copilot Cloud Agent, run the application locally, and merge it when the i18n support is correct.
+```text
+@copilot can you update the readme with the new i18n support and add a screenshot of the home page in English, French, and German
+```
