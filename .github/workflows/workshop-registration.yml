@@ -1,0 +1,55 @@
+name: Workshop registration
+
+on:
+  issues:
+    types:
+      - opened
+
+permissions:
+  issues: read
+
+jobs:
+  dispatch-registration:
+    name: Dispatch registration to private automation
+    if: contains(github.event.issue.labels.*.name, 'workshop-registration')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Dispatch registration
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.WORKSHOP_AUTOMATION_DISPATCH_TOKEN }}
+          script: |
+            const targetRepo = 'we-are-devs-2026/workshop-automation';
+            const secretWord = process.env.WORKSHOP_SECRET_WORD;
+
+            if (!secretWord) {
+              core.setFailed('WORKSHOP_SECRET_WORD is not configured.');
+              return;
+            }
+
+            const username = context.payload.issue.user.login;
+            const usernamePattern = /^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/;
+
+            if (!usernamePattern.test(username) || username.includes('--')) {
+              core.setFailed(`Invalid GitHub username: ${username}`);
+              return;
+            }
+
+            const [owner, repo] = targetRepo.split('/');
+
+            await github.rest.repos.createDispatchEvent({
+              owner,
+              repo,
+              event_type: 'workshop-registration',
+              client_payload: {
+                source_repo: `${context.repo.owner}/${context.repo.repo}`,
+                source_issue_number: context.payload.issue.number,
+                source_issue_url: context.payload.issue.html_url,
+                requested_by: username,
+                username,
+                secret_word: secretWord
+              }
+            });
+        env:
+          WORKSHOP_SECRET_WORD: ${{ secrets.WORKSHOP_SECRET_WORD }}

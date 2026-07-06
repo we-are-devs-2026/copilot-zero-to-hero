@@ -1,0 +1,19 @@
+name: Workshop registration
+description: Request access to the workshop GitHub organization.
+title: "Workshop access request"
+labels:
+  - workshop-registration
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This public issue requests workshop organization access for the GitHub account that opens the issue.
+
+        Do not enter any workshop secret or access code here.
+  - type: checkboxes
+    id: account_confirmation
+    attributes:
+      label: Account confirmation
+      options:
+        - label: I am opening this issue with the GitHub account that should be invited.
+          required: true
