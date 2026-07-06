@@ -669,3 +669,111 @@ You should see a screen similar to this when the feature is working:
 
 ![Drug Management](./images/006-petclinid-drug-screen.png)
 
+---
+
+# ⚛️ Part 11 — Modernize the frontend: Angular → Next.js
+
+The Petclinic app (REST + Angular) now works end to end, including the new **drug** service. A very common real-world task is **modernization** — here we'll replace the Angular frontend with a brand-new **Next.js** application, keeping the same user experience and screens.
+
+We'll let GitHub Copilot inspect the running application in a real browser, rebuild the UI on Next.js against the existing REST backend, and polish the design with **Impeccable**.
+
+## Enable the Playwright MCP server
+
+Playwright lets Copilot drive a real browser, so it can open the existing Angular app, look at the screens and flows, and later verify the new Next.js UI.
+
+1. Open the GitHub Copilot app **Settings**.
+2. Go to the **MCP servers** section.
+3. Enable the **Playwright** MCP server.
+
+## Enable "Impeccable" (Experimental)
+
+Impeccable is an experimental design capability. We'll invoke it with `/impeccable` to rework the look and feel of the new frontend.
+
+1. In **Settings**, open the **Experimental** section.
+2. Enable **Impeccable**.
+
+## Create the new frontend folder
+
+Create an empty folder that will host the new Next.js frontend:
+
+```bash
+mkdir -p ~/wad/spring-petclinic-nextjs
+```
+
+Optionally initialize it as a git repository so you can track and push the generated code:
+
+```bash
+cd ~/wad/spring-petclinic-nextjs && git init
+```
+
+## Plan the new Next.js frontend
+
+1. In the Copilot app, click **Add project from → Local folder** and select `~/wad/spring-petclinic-nextjs`, then open it.
+2. Make sure the Petclinic **rest** and **angular** repositories are still added to the app (from Part 10), so Copilot can read the existing API and screens.
+3. Switch the session to **Plan** mode.
+4. Ask:
+
+```text
+/orchestrate, look in the petclinic rest and angular app, to create a brand new frontend application using lastest version of NextJS, I want to use the same user experience and screens, and I want to use /impeccable for the design
+```
+
+Review the plan before implementing. Because Copilot has all three projects in context, the plan should cover:
+
+- Scaffolding the latest version of **Next.js** in the new `spring-petclinic-nextjs` folder.
+- Recreating every existing screen — owners, pets, vets, visits, and the new **drugs** pages — with the same user experience.
+- Wiring the UI to the existing **Spring REST** backend (same endpoints, same data model).
+- Routing, navigation, and shared layout.
+- Using the **Playwright** MCP server to open the current Angular app and match its screens and flows.
+- Applying **`/impeccable`** for the design system and visual polish.
+
+Approve the plan, then let Copilot implement it. When it's done, run the new Next.js frontend against the existing REST backend and test the same flows — including drug management — end to end. You can reuse the `/orchestrate` "start front and back" prompt from Part 10, pointing it at the new Next.js frontend.
+
+
+After few review, and iteration you should have a working Next.js frontend that looks and behaves like the original Angular app, but with a modern framework and design.
+Here an example of the new Next.js frontend :
+
+![](./images/007-petclinic-nextjs.png)
+
+---
+
+# 🎨 Part 12 — Build a dashboard with Copilot App Canvas
+
+The GitHub Copilot app can be extended with **canvas extensions** — shared, interactive surfaces such as dashboards, kanban boards, triage boards, or spreadsheets, where you and the agent work together. Canvases are bidirectional: the agent updates the canvas while it works, and you can edit the same surface directly. They open in the app's right side panel.
+
+See the docs: <https://docs.github.com/en/copilot/how-tos/github-copilot-app/working-with-canvas-extensions>
+
+## Explore existing canvases
+
+Plenty of ready-made extensions are available on the **Awesome Copilot** marketplace — browse and test a few to see what canvases can do:
+
+<https://awesome-copilot.github.com/extensions/>
+
+## Create your own: a Copilot usage dashboard
+
+Now let's build our own canvas, based on **your own usage of GitHub Copilot**. We'll analyze your session history (the chronicle database) and turn it into a dashboard.
+
+1. In the Copilot app, open a **new chat** from the conversations list at the top.
+2. (Optional) Select the **GPT-5.5** model for this session.
+3. Make sure the **`/create-canvas`** skill is enabled — if it doesn't appear in the prompt box, turn it on in your **Settings**.
+4. Enter the following prompt:
+
+```text
+/create-canvas create a dashboard with many charts that analyze my Copilot sessions for the last 24 hours and give me:
+- the type of activities that I have done : ask, new code, documentation, review, bug fix, ....
+- the various models that i have used by %
+- the number of token that I have used by models
+- the list of repositories, projects I have worked on
+- also the number of PR, review, CI fix that I have work on by project
+```
+
+Copilot generates the canvas capabilities from your prompt, queries your Copilot session history, and opens the dashboard in the right side panel. Keep iterating in the chat — ask it to add or remove charts, change the time window (for example the last 7 days), or adjust the layout.
+
+When prompted, choose a scope for the canvas:
+
+- **User scope** (`~/.copilot/extensions`) — a personal canvas on your machine.
+- **Project scope** (`.github/extensions`) — a team-shared canvas committed to the repository.
+
+This will look like the following screenshot, with multiple charts and tables showing your Copilot usage:
+
+![](./images/008-canvas.png)
+
