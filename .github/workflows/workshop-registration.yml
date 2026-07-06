@@ -4,6 +4,8 @@ on:
   issues:
     types:
       - opened
+      - edited
+      - reopened
 
 permissions:
   issues: read
@@ -21,10 +23,11 @@ jobs:
           github-token: ${{ secrets.WORKSHOP_AUTOMATION_DISPATCH_TOKEN }}
           script: |
             const targetRepo = 'we-are-devs-2026/workshop-automation';
-            const secretWord = process.env.WORKSHOP_SECRET_WORD;
+            const body = context.payload.issue.body || '';
+            const secretWord = getIssueFormValue(body, 'Workshop secret word');
 
             if (!secretWord) {
-              core.setFailed('WORKSHOP_SECRET_WORD is not configured.');
+              core.setFailed('Workshop secret word is required in the issue form.');
               return;
             }
 
@@ -51,5 +54,11 @@ jobs:
                 secret_word: secretWord
               }
             });
-        env:
-          WORKSHOP_SECRET_WORD: ${{ secrets.WORKSHOP_SECRET_WORD }}
+
+            function getIssueFormValue(body, label) {
+              const escapedLabel = label.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+              const fieldPattern = new RegExp(`^### ${escapedLabel}\\s*\\r?\\n\\r?\\n([\\s\\S]*?)(?=\\r?\\n### |$)`, 'm');
+              const match = body.match(fieldPattern);
+
+              return match?.[1].trim();
+            }

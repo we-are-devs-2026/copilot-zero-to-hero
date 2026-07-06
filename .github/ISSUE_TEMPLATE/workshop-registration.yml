@@ -9,7 +9,15 @@ body:
       value: |
         This public issue requests workshop organization access for the GitHub account that opens the issue.
 
-        Do not enter any workshop secret or access code here.
+        The workshop secret word field below will be visible in this public issue. Enter only the workshop word shared by the organizers. Do not enter passwords, personal access tokens, or private credentials.
+  - type: input
+    id: workshop_secret_word
+    attributes:
+      label: Workshop secret word
+      description: This value is visible in the public issue. Enter only the workshop word shared by the organizers.
+      placeholder: Enter the workshop word
+    validations:
+      required: true
   - type: checkboxes
     id: account_confirmation
     attributes:
