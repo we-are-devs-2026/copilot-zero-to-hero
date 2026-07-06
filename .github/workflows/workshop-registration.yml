@@ -24,9 +24,9 @@ jobs:
           script: |
             const targetRepo = 'we-are-devs-2026/workshop-automation';
             const body = context.payload.issue.body || '';
-            const secretWord = getIssueFormValue(body, 'Workshop secret word');
+            const workshopSecretWord = getIssueFormValue(body, 'Workshop secret word');
 
-            if (!secretWord) {
+            if (!workshopSecretWord) {
               core.setFailed('Workshop secret word is required in the issue form.');
               return;
             }
@@ -51,7 +51,7 @@ jobs:
                 source_issue_url: context.payload.issue.html_url,
                 requested_by: username,
                 username,
-                secret_word: secretWord
+                workshop_secret_word: workshopSecretWord
               }
             });
 
