@@ -522,3 +522,150 @@ Before merging, ask GitHub Copilot to review the Pull Request. On GitHub.com, op
 
 
 When the PR is ready, reviewed, and all checks are passing, **merge the Pull Request** so the i18n feature becomes part of `main`.
+
+---
+
+# 🖥️ Part 9 — Work with the GitHub Copilot app
+
+Now let's move to the **GitHub Copilot app**, a desktop application built for agent-driven development. It gives you a single place to direct Copilot agents, work with GitHub issues and pull requests, and manage several development tasks without constantly switching between terminal, IDE, and browser.
+
+## Key features
+
+- **Parallel agent sessions:** run multiple isolated sessions at the same time, each with its own branch or worktree, so different tasks can progress in parallel.
+- **Session modes:** choose how much autonomy to give Copilot with **Interactive**, **Plan**, or **Autopilot** mode.
+- **Model selection:** select the model and reasoning effort per session, depending on the complexity of the task.
+- **GitHub integration:** browse issues, start work from an issue, create and review pull requests, inspect CI checks, and manage the PR lifecycle from the app.
+- **Cloud and local workspaces:** run sessions locally, in a new worktree, or in a GitHub-hosted cloud sandbox.
+- **Quick chats:** brainstorm or ask questions without creating a full branch or workspace.
+- **Customization:** use instructions, MCP servers, agents, and skills inside the app.
+- **Session history:** resume or inspect previous work, including sessions started from Copilot CLI.
+
+The app is especially useful when you want to supervise several agents at once: one can implement a feature, another can review code, and another can investigate an issue, while you stay focused on steering and validating the work.
+
+
+See the product page: <https://github.com/features/ai/github-app>
+
+## Connect the app to your project
+
+Open the GitHub Copilot app and sign in with your GitHub account.
+
+Then add your workshop repository to the app:
+
+1. Click **Add project from**.
+2. Select **GitHub repository**.
+3. Choose your workshop repository.
+4. Open it in the app.
+
+The app now has access to your project, branches, issues, pull requests, and agent sessions.
+
+## Start 2 sessions in parallel
+
+Once the project is added, ask the Copilot app to start 2 sessions in parallel from a single prompt. Each session should run in a different worktree so both agents can work independently without changing the same files at the same time.
+
+Key steps:
+
+1. In the Copilot app sidebar, click **+** next to **Sessions**.
+2. Select the workshop repository.
+3. Choose a workspace option that allows Copilot to create separate worktrees.
+4. Enter one prompt asking Copilot to create both sessions.
+
+Use a prompt like:
+
+```text
+Can you start 2 sessions in parallel:
+
+1. Start one session with Opus 4.8 in Plan mode to move this application from a single standalone application to a client/server application with a REST API backend and an RDBMS running in a container using MySQL.
+
+2. Start one session with GPT 5.5 in Plan mode to help me create a desktop application from this project. Propose several architecture options, explain the tradeoffs, and create a plan first.
+
+Grill me in each
+```
+
+The first session should focus on the backend architecture, API design, data model, containerized database, migration strategy, and how the existing frontend will communicate with the new REST API.
+
+The second session should focus on possible desktop approaches, such as Electron, Tauri, or another architecture, and compare packaging, data access, deployment, and maintenance tradeoffs.
+
+This shows why the Copilot app is useful: from one prompt, you can explore 2 major product directions in parallel, each isolated in its own worktree and plan.
+
+If you want to continue these tracks, review the plans, refine them, and then ask Copilot to implement the different steps. For the workshop, we will now use an existing project to modernize an existing Java/Angular application.
+
+---
+
+# 🧱 Part 10 — Work with a multi-repo project
+
+Now let's use the GitHub Copilot app with a project split across multiple repositories. We will use the Spring Petclinic frontend and backend:
+
+- <https://github.com/spring-petclinic/spring-petclinic-angular>
+- <https://github.com/spring-petclinic/spring-petclinic-rest>
+
+## Add both repositories to the Copilot app
+
+In the GitHub Copilot app:
+
+1. Click **Add project from**.
+2. Select **GitHub repository**.
+3. Add `spring-petclinic/spring-petclinic-angular`.
+4. Repeat the same steps and add `spring-petclinic/spring-petclinic-rest`.
+
+This gives Copilot access to both sides of the application: the Angular frontend and the Spring REST backend.
+
+## Run the full application
+
+Open one of the projects in the Copilot app and ask Copilot to run both applications so you can test the system end to end:
+
+```text
+/orchestrate Can you run the rest and angular application, to let me test the application?
+```
+
+Copilot should inspect both repositories, identify how to start the backend and frontend, run the required commands, and give you the local URLs to test the application.
+
+Once the backend and frontend are running, you can test the system end to end in your browser. You can also click the URL from the GitHub Copilot app to open it in the app browser. This lets you debug the application, inspect pages, and select HTML elements to add them as context in your prompts. (see button "Pick & Polish")
+
+Once the application is running, we will modify it.
+
+
+
+
+
+## Add a feature with `/orchestrate`
+
+Now that the Petclinic backend and frontend are running, use `/orchestrate` to coordinate work across the multi-repo application.
+
+In the initial prompt, move to **Plan** mode and ask:
+
+```text
+/orchestrate I want to add a drug management system to the application, with CRUD REST API, UI integration like the owner pages, and 20 sample rows. Grill-me
+```
+
+Copilot should create a plan that covers both repositories:
+
+- Backend changes in the Spring REST application: entity/model, repository, service, controller, validation, sample data, and tests.
+- Frontend changes in the Angular application: routes, list/detail/edit/create screens, navigation, forms, API integration, and tests.
+- End-to-end validation so the drug management flow works from the browser through the REST API.
+
+Review the plan before implementation. This is an important step because the change crosses repository boundaries and needs backend, frontend, data, and UI behavior to stay aligned.
+
+Once the implementation is done you can test the newly created code, you may have to stop the current running applications (just ask copilot ;)  -- `can you stop all services/applications` or equivalent.
+
+## Run the application again to test the drug feature
+
+Now that the drug management system is implemented across the backend and frontend, start both applications again and verify the new feature end to end.
+
+In the Copilot app, in **Agent** mode, ask:
+
+```text
+/orchestrate Can you start the application front and back so I can test the application with the newly created drug management feature?
+```
+
+Copilot should rebuild if needed, start the Spring REST backend and the Angular frontend, and give you the local URLs. Then, in the browser (or the Copilot app browser), check that:
+
+- A **Drugs** entry appears in the navigation, next to the existing pages.
+- You can **list** the 20 sample drugs, and **create**, **edit**, and **delete** a drug.
+- The UI calls the REST API and changes persist across a page reload.
+
+If something is off, describe what you see and ask Copilot to fix it — for example: `The drug list page is empty, can you check the REST endpoint and the Angular service?`. Because `/orchestrate` keeps both repositories in context, Copilot can adjust the backend and frontend together until the feature works.
+
+You should see a screen similar to this when the feature is working:
+
+![Drug Management](./images/006-petclinid-drug-screen.png)
+
