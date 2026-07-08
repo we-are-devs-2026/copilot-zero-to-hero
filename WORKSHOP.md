@@ -48,9 +48,9 @@ You'll build **two apps** from the same dataset — a static site by *just askin
 
 # ✅ Prerequisites & installation
 
-Set up **VS Code**, **GitHub CLI**, **GitHub Copilot**, and **Git** for the hands-on parts. Also install the Copilot **CLI** and **app** — we'll explore them in the final section.
+Set up **VS Code**, **GitHub CLI**, **GitHub Copilot**, **Git**, and **Node.js** for the hands-on parts. **Node.js is mandatory** for the Copilot CLI. **Python is good to have** for local scripting and examples.
 
-> Don't have a GitHub Copilot subscription? A 30-day free trial is available at <https://github.com/features/copilot>.
+> Need access to the workshop GitHub organization? Create an issue using the **Workshop registration** template: <https://github.com/we-are-devs-2026/copilot-zero-to-hero/issues/new?template=workshop-registration.yml>.
 
 <details>
 <summary><b>1. Install VS Code</b> (macOS / Windows / Linux)</summary>
@@ -295,7 +295,9 @@ Ask question if you need more information.
 
 ### Step 7 · Then, **Implement**
 
-Review the plan, tweak it, then approve, and implement it in **Autopilot** mode
+Review the plan, tweak it, then approve it and let Copilot implement it.
+
+During implementation, Copilot will ask you to approve tool calls before it runs commands or edits files. You can approve each request one by one, or use **Autopilot** mode to let Copilot run approved categories of tool calls with less interruption. Learn more about approvals and Autopilot in the VS Code docs: <https://code.visualstudio.com/docs/agents/approvals>.
 
 
 #### Step 7a · Another session another tasks
@@ -309,6 +311,19 @@ Something like :
 > Can you add a new ERD in the readme file based on the content of data 
 
 You can add the `data` folder to the context of the session, and GitHub Copilot will be able to read the data and generate an ERD diagram based on it.
+
+### Step 8 · Review and test the application
+
+Look at the ERD generated in the `README.md`, then test the application from the terminal:
+
+```bash
+cd web
+npm run dev
+```
+
+Open the local URL shown in the terminal. You should see a first implementation of your agenda application.
+
+**Make sure you click on "Keep"** if you are ok with the application, or you can continue to interact with the agent to improve the application. (but keep it simple for the workshop, we will add more features later).*
 
 ---
 
