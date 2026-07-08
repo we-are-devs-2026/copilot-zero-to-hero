@@ -10,6 +10,4 @@ Dataset template: <https://github.com/github-copilot-workshop/we-are-developers-
 
 ## Workshop registration automation
 
-The issue template asks attendees for the **Workshop secret word** and the registration workflow dispatches it to `we-are-devs-2026/workshop-automation` as `client_payload.workshop_secret_word`.
-
-Configure the expected word in the private automation repository as the GitHub Actions secret `WORKSHOP_SECRET_WORD`. Use that exact name for the secret/environment variable; do not use `SECRET_WORD` or `secret_word`. This repository also needs `WORKSHOP_AUTOMATION_DISPATCH_TOKEN` so the workflow can send the `workshop-registration` repository dispatch event.
+Create an issue in this repo to register for the workshop, using the template "Workshop Registration". The issue will be automatically labeled and assigned to you. You will receive an invitation to the the GitHub Organization for the workshop, and you will be able to use GitHub Copilot and GitHub Plaform to do the workshop exercises.
