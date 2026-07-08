@@ -10,11 +10,14 @@ You'll build **two apps** from the same dataset — a static site by *just askin
 
 ## 🎯 What you'll learn
 
-- Create a project from a template and drive Copilot in **Agent mode** with the **Auto** model.
-- Turn a one-line prompt into a working multi-page website.
-- Watch the cost: **AI Credits** and the **Debug / Agent console**.
-- See why **tab-completion & inline chat** still matter — but are no longer the main act.
-- Use a grown-up workflow: **Plan first, implement second**, to build a Next.js app.
+- Start from a GitHub template repository and use a real dataset to build working applications with GitHub Copilot.
+- Drive Copilot in **Agent mode** with the **Auto** model, from a one-line prompt to a generated multi-page site.
+- Monitor and debug agent work with **AI Credits**, the **Debug / Agent console**, and local review workflows.
+- Combine classic Copilot interactions — completions and inline chat — with agentic development.
+- Apply a professional **Plan → Implement** workflow to build and iterate on a Next.js application.
+- Use GitHub Copilot beyond the editor with the **CLI**, pull requests, code review, and the Copilot app.
+- Specialize Copilot with **Skills**, delegate work to the **Cloud Agent**, and coordinate multi-repository changes.
+- Explore advanced workflows with MCP, frontend modernization, orchestration, and **Copilot App** Canvas dashboards.
 
 ## 🧰 What we'll use
 
@@ -22,16 +25,24 @@ You'll build **two apps** from the same dataset — a static site by *just askin
 - **VS Code** + GitHub Copilot (today's hands-on tool).
 - GitHub Copilot **CLI** and the Copilot **app** — installed below, explored at the end.
 
-## ⏱️ Agenda (10:30 – 12:30)
+## 🗺️ Agenda overview
 
-| Time | Part |
+| Part | Overview |
 | --- | --- |
-| 10:30 | Intro + setup (repo from template, clone) |
-| 10:45 | **Part 1** — HTML site with Agent + Auto |
-| 11:15 | AI Credits & Debug console, completion/inline chat |
-| 11:35 | Commit & push |
-| 11:45 | **Part 2** — Plan → Implement a Next.js app |
-| 12:20 | Wrap-up + stretch goals |
+| **Prerequisites** | Install and authenticate the tools used during the workshop: VS Code, Git, GitHub CLI, GitHub Copilot, Copilot CLI, and the Copilot app. |
+| **Part 0** | Create your private repository from the template, clone it locally, and open it in VS Code. |
+| **Part 1** | Build the first site by asking GitHub Copilot Agent mode with the Auto model to generate it from the provided data. |
+| **Part 2** | Monitor AI Credits usage and inspect the Debug / Agent console to understand what the agent did. |
+| **Part 3** | Use completions and inline chat to show where classic Copilot interactions still fit. |
+| **Part 4** | Review, commit, and push the generated site. |
+| **Part 5** | Use the professional Plan → Implement workflow to reset, plan, and build a Next.js app. |
+| **Part 6** | Work from the terminal with GitHub Copilot CLI: manage sessions, permissions, reviews, pull requests, and merge flow. |
+| **Part 7** | Specialize Copilot with Skills, including installing and using the `grill-me` skill in Plan mode. |
+| **Part 8** | Add internationalization with a Plan → Issue → Cloud Agent workflow. |
+| **Part 9** | Use the GitHub Copilot app to connect to the project and run parallel sessions. |
+| **Part 10** | Work across a multi-repository application, run the full stack, and add a feature with `/orchestrate`. |
+| **Part 11** | Modernize an Angular frontend into a Next.js frontend with MCP and planning support. |
+| **Part 12** | Explore and create Copilot App Canvas dashboards, including a Copilot usage dashboard. |
 
 ---
 
@@ -776,4 +787,3 @@ When prompted, choose a scope for the canvas:
 This will look like the following screenshot, with multiple charts and tables showing your Copilot usage:
 
 ![](./images/008-canvas.png)
-
