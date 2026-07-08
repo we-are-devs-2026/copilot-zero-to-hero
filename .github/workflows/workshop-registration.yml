@@ -19,14 +19,16 @@ jobs:
     steps:
       - name: Dispatch registration
         uses: actions/github-script@v7
+        env:
+          WORKSHOP_SECRET_WORD: ${{ secrets.WORKSHOP_SECRET_WORD }}
         with:
           github-token: ${{ secrets.WORKSHOP_AUTOMATION_DISPATCH_TOKEN }}
           script: |
             const targetRepo = 'we-are-devs-2026/workshop-automation';
             const body = context.payload.issue.body || '';
-            const secretWord = getIssueFormValue(body, 'Workshop secret word');
+            const workshopSecretWord = process.env.WORKSHOP_SECRET_WORD;
 
-            if (!secretWord) {
+            if (!workshopSecretWord) {
               core.setFailed('Workshop secret word is required in the issue form.');
               return;
             }
@@ -51,7 +53,7 @@ jobs:
                 source_issue_url: context.payload.issue.html_url,
                 requested_by: username,
                 username,
-                secret_word: secretWord
+                workshop_secret_word: workshopSecretWord
               }
             });
 
