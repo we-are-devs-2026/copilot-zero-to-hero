@@ -142,7 +142,7 @@ We start from a template repo containing only the congress data — no code yet.
 
 ### Step 1 · Create your private repo from the template
 
-1. Open **<https://github.com/github-copilot-workshop/we-are-developers-2026-data>**.
+1. Open **<https://github.com/we-are-devs-2026/we-are-developers-2026-data>**.
 2. Click **Use this template → Create a new repository**.
 3. Name it (e.g. `we-are-devs-2026/<your-username>-wad-copilot-workshop`), set **Private**, create.
 

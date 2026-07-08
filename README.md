@@ -6,4 +6,4 @@ Go from tab-completion to agentic Copilot: build a static site by *just asking*,
 
 👉 **Start here: [WORKSHOP.md](./WORKSHOP.md)**
 
-Dataset template: <https://github.com/github-copilot-workshop/we-are-developers-2026-data>
+Dataset template: <https://github.com/we-are-devs-2026/we-are-developers-2026-data>
