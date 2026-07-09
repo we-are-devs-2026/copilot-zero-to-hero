@@ -802,3 +802,87 @@ When prompted, choose a scope for the canvas:
 This will look like the following screenshot, with multiple charts and tables showing your Copilot usage:
 
 ![](./images/008-canvas.png)
+
+---
+
+# 🔭 What's next — make Copilot part of your daily flow
+
+The workshop gets you productive with Copilot. The real gains come when you weave it into your everyday work. Here are four directions to keep going, with concrete examples you can try today.
+
+## 1. Automations in the GitHub Copilot App
+
+Use the Copilot app to run **recurring, unattended tasks** — triage, summaries, and digests — so routine work happens without you.
+
+- **Issue triage:** classify incoming issues, suggest labels, flag duplicates, and route to the right area.
+- **PR summaries:** post a plain-language summary and a risk/checklist comment on each new pull request.
+- **Daily/weekly digest:** roll up new issues, merged PRs, and CI failures into one message.
+
+Example prompts to save as automations:
+
+```text
+Every morning at 9:00, look at issues opened in the last 24h in this repo,
+suggest 1-3 labels for each, and post a short summary comment.
+```
+
+```text
+When a pull request is opened, summarize the change in 3 bullet points,
+list the files touched, and flag anything that looks risky.
+```
+
+> Tip: start read-only (comment/summarize) and only enable write actions (labeling, closing) once you trust the results.
+
+## 2. Use the simple chat in the Copilot App as your main AI tool
+
+The Copilot app's **chat** is a general-purpose assistant, not just a coding helper. Make it your default AI surface:
+
+- Draft emails, docs, and release notes; brainstorm; explain unfamiliar code or logs.
+- **Switch models per task** (e.g. a fast model for quick Q&A, a stronger model for reasoning).
+- Keep everything in one place — connected to your repos and session history.
+
+```text
+Explain what this stack trace means and suggest the top 2 likely causes.
+```
+
+```text
+Draft release notes for the last 10 merged PRs in a friendly, concise tone.
+```
+
+## 3. Generate content with new Skills (PDF, PPTX, and more)
+
+**Skills** extend Copilot so it can produce real artifacts — not just text. Install the ones you need and call them from chat:
+
+- **`pdf`** — turn a spec, README, or notes into a formatted PDF report.
+- **`pptx`** — generate slide decks (like this presentation) from an outline.
+- **`xlsx`**, **`docx`**, and community skills from the **Awesome Copilot** marketplace.
+
+```text
+/pdf turn PROPOSAL.md into a clean, formatted PDF with a title page and sections.
+```
+
+```text
+/pptx create a 5-slide overview deck from the "What you'll learn" section of WORKSHOP.md.
+```
+
+Enable skills in **Settings**; browse more at <https://awesome-copilot.github.com/>.
+
+## 4. Add Agentic Workflows to your repository
+
+Commit **agentic workflows** into your repo so agents act automatically on GitHub events — a natural next step after the automations above, but versioned and shared with your team.
+
+- Triggered by events (issue opened, PR opened, schedule) and run agent steps in response.
+- Live in the repo (e.g. under `.github/`), so they're reviewed, versioned, and team-wide.
+
+Example ideas:
+
+- **On new issue → draft a fix PR** for a maintainer to review.
+- **On PR opened → run a review pass** and post suggestions.
+- **On schedule → dependency/housekeeping** summaries.
+
+```text
+On every new issue labeled "bug", investigate the codebase, propose a fix,
+and open a draft pull request linking back to the issue.
+```
+
+> Start small: one workflow, draft output only, human approval before anything merges. Expand once it proves reliable.
+
+Learn more: <https://github.github.com/gh-aw/>
